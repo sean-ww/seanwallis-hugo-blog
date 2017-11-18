@@ -1,6 +1,7 @@
 ---
 title: "Testing Time"
 date: 2017-11-02T20:31:06Z
+tweet: "Unit testing with built-in PHP functions"
 ---
 
 Sometimes when unit testing PHP code, we run into things that are difficult to mock. This post will introduce how you can mock built-in php functions such as time() and mt_rand().
@@ -25,7 +26,7 @@ function displayGreeting()
     return 'Good Evening';
 }
 ```
-In order to fully test our display greeting function we need to be able to manipulate the time element, without having to change any system settings.
+In order to fully test our display greeting function we need to be able to manipulate the time element, without having to change any system settings.<!--more-->
 
 We could just pass in the time as a dependency and mock that. However, by overriding built-in functions within a namespace we can avoid this:
 

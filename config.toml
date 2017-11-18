@@ -14,7 +14,7 @@ disqusShortname = "seanwallis"
 googleAnalytics = "UA-XXXXXXXX-X"
 
 # Copyright of your post
-copyright = "© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give the source if you would like to quote or reproduce. "
+copyright = ""
 
 # Initial site menu, you can extend menu with content.
 #[[menu.main]]
