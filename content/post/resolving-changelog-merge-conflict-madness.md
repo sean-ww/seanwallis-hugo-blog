@@ -49,7 +49,7 @@ Then imagine we have many stories in progress at the same time.
 As soon as one story gets merged into our development branch, all other stories have merge conflicts to resolve.
 Then we must resolve conflicts continually as we work to get anything through. Madness!
 
-### So how do we solve this
+### How do we solve this
 
 Fortunately this isn't a new problem. GitLab experienced a very similar [changelog conflict crisis](https://about.gitlab.com/2018/07/03/solving-gitlabs-changelog-conflict-crisis/), which gave us the basis for our solution.
 Quite simply, we stop making all of our changes in one file, and instead place our changes within unique files in a `changelogs/unreleased` folder.
