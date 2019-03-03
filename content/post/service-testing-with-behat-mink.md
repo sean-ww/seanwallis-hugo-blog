@@ -10,11 +10,11 @@ In this post we'll look at how we can use Mink and Behat to simulate the interac
 
 For our example, we'll access all endpoints via ```https://localhost/example-api```, and any data will be returned in a JSON format.
 
-### Fake Login
+## Fake Login
 
 A ```/login``` endpoint will set our session and a ```/logout``` endpoint will destroy our session. Both will return a 204 when successful.
 
-### Our New Feature
+## Our New Feature
 
 We are going to add a feature that returns data as json only once we have our fake login session:
 ```
@@ -29,7 +29,7 @@ And when a session is not present our endpoint will return a 401 error:
 Status: 401 UNAUTHORIZED
 ```
 
-### Initial Setup
+## Initial Setup
 
 Before getting started with on our feature, we first need our simple login / logout service application. For this we'll use Slim.
 
@@ -87,7 +87,7 @@ $app->run();
 ```
 This gives us our first two endpoints.
 
-### Putting Acceptance Tests In Place
+## Putting Acceptance Tests In Place
 
 Now that we have our starting point, let's add our dev dependencies:
 
@@ -203,7 +203,7 @@ Feature: Login
 0m0.51s (14.78Mb)
 ```
 
-### Adding A Data Endpoint
+## Adding A Data Endpoint
 
 We are now in a position to add our data feature:
 ```
@@ -383,7 +383,7 @@ Feature: Login
 0m0.66s (15.00Mb)
 ```
 
-### Tagging
+## Tagging
 
 One final point would be to introduce tags. As you build up many tests tagging becomes especially useful.
 

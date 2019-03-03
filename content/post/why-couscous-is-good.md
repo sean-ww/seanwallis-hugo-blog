@@ -14,7 +14,7 @@ That's where [Couscous](http://couscous.io/) comes in. Couscous is a static webs
 For me the great advantage is that I can write docs in the familiar markdown format, alongside my code, under source control. I am then able to run a single command ```couscous deploy``` and my documents are online.
 Or if I choose not to use GitHub pages, I can first build the website using ```couscous generate``` and then deploy the code myself.
 
-### Getting Started
+## Getting Started
 
 We can install couscous globally using composer to use it easily on any project:
 ```
@@ -25,7 +25,7 @@ Then, assuming you have markdown files within you project, you can run ```cousco
 
 ![Step 1](/media/posts/why-couscous-is-good/couscous-step-1.png)
 
-### Configuration
+## Configuration
 
 Great, we have some documentation, but in order for it to be more useful we have to configure it a little.
 

@@ -6,7 +6,7 @@ tweet: "Unit testing with built-in PHP functions"
 
 Sometimes when unit testing PHP code, we run into things that are difficult to mock. This post will introduce how you can mock built-in php functions such as time() and mt_rand().
 
-### Mocking time()
+## Mocking time()
 
 Let's take the below example:
 ```php
@@ -89,7 +89,7 @@ In the above example we can make use of the [php-mock/php-mock-phpunit](https://
 
 We can then apply the same idea to other built-in php functions.
 
-### Mocking mt_rand()
+## Mocking mt_rand()
 
 Let's look at another example:
 ```php
