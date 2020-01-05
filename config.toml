@@ -34,8 +34,8 @@ copyright = ""
   author = "Sean Wallis"
   avatar = "/media/links/profile.jpg"
   seotitle = "Sean Wallis"
-  subtitle = "Full Stack Developer @Enrise.\nPHP. JavaScript. React."
-  description = "Full Stack Developer @Enrise. PHP. JavaScript. React."
+  subtitle = "Full Stack Developer.\nPHP and JavaScript."
+  description = "Full Stack Developer. PHP and JavaScript."
   paginate = 10
 
   # Choose your social networks
