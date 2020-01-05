@@ -8,7 +8,7 @@ install:
   - sudo dpkg -i hugo*.deb
 
 script:
-  - hugo
+  - hugo --cleanDestinationDir --debug --gc --ignoreCache --verbose
   - echo 'seanwallis.com' > public/CNAME
   - cd public
   - ls
