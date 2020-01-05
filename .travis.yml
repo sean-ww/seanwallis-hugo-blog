@@ -9,11 +9,8 @@ install:
 
 script:
   - git clone https://github.com/sean-ww/hugo-nuo themes/hugo-nuo
-  - hugo --cleanDestinationDir --debug --ignoreCache --verbose
+  - hugo --cleanDestinationDir --ignoreCache --disableKinds=RSS
   - echo 'seanwallis.com' > public/CNAME
-  - cd public
-  - ls
-  - cat index.html
 
 # Deploy to GitHub pages
 deploy:
