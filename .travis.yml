@@ -10,6 +10,7 @@ install:
 script:
   - hugo
   - echo 'seanwallis.com' > public/CNAME
+  - cd public
   - ls
   - cat index.html
 
