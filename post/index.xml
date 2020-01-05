@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Sean Wallis</title>
+    <link>http://seanwallis.com/post/</link>
+    <description>Recent content in Posts on Sean Wallis</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 03 Jun 2019 18:43:06 +0000</lastBuildDate>
+    
+	<atom:link href="http://seanwallis.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PDF Accessibility for Web Developers</title>
+      <link>http://seanwallis.com/post/pdf-accessibility-for-web-developers/</link>
+      <pubDate>Mon, 03 Jun 2019 18:43:06 +0000</pubDate>
+      
+      <guid>http://seanwallis.com/post/pdf-accessibility-for-web-developers/</guid>
+      <description>The Portable Document Format (PDF) is used throughout the web and beyond. Created in the 1990s by Adobe, it provides a platform independent method of accessing documents across a wide range of devices. Regardless of software, hardware and operating system: PDF layouts, text, fonts, colours and graphics should all remain the same. Which all sounds very accessible, but is it?
+Unfortunately PDFs are not by default accessible to everyone, yet with the right content and a tagged structure they can be greatly improved if opened with the correct software.</description>
+    </item>
+    
+    <item>
+      <title>Web Accessibility: Why we care and focus on readability</title>
+      <link>http://seanwallis.com/post/web-accessibility-why-we-care-and-focus-on-readability/</link>
+      <pubDate>Wed, 20 Mar 2019 18:43:06 +0000</pubDate>
+      
+      <guid>http://seanwallis.com/post/web-accessibility-why-we-care-and-focus-on-readability/</guid>
+      <description>Whether you want to boost your search engine performance and reach the widest possible audience, or just stay ahead of the game when it comes to legal compliance, then accessibility should be important to you. Thankfully, there are already guidelines for this.
+The Web Content Accessibility Guidelines (WCAG) are accessibility recommendations developed by The Web Accessibility Initiative (WAI), which is part of The World Wide Web Consortium (W3C). When they’re not too busy creating more acronyms, WCAG aim to provide a single shared standard, ensuring that users with different disabilities are able to access and interact with content as much as possible without restrictions.</description>
+    </item>
+    
+    <item>
+      <title>Web Accessibility For The Blind And Visually Impaired</title>
+      <link>http://seanwallis.com/post/web-accessibility-for-the-blind-and-visually-impaired/</link>
+      <pubDate>Wed, 27 Feb 2019 18:43:06 +0000</pubDate>
+      
+      <guid>http://seanwallis.com/post/web-accessibility-for-the-blind-and-visually-impaired/</guid>
+      <description>According to the World Health Organisation around 1.3 billion people live with some form of vision impairment. Of those, 217 million have moderate to severe vision impairment, and 36 million people are blind. Whilst those most severe cases are low proportionally, they are not small numbers. Within the context of developing for the web, they are people that should not be forgotten. They too should have the independence to navigate content, shop online and engage with the world.</description>
+    </item>
+    
+    <item>
+      <title>Resolving Changelog Merge Conflict Madness</title>
+      <link>http://seanwallis.com/post/resolving-changelog-merge-conflict-madness/</link>
+      <pubDate>Mon, 05 Nov 2018 18:43:06 +0000</pubDate>
+      
+      <guid>http://seanwallis.com/post/resolving-changelog-merge-conflict-madness/</guid>
+      <description>We start with an innocent looking changelog.
+--- title: Changelog status: ready # draft, ready --- All notable changes to this project will be documented in this file.&amp;lt;br&amp;gt; The format is based on [Keep a Changelog](http://keepachangelog.com) ## [2.0.0] - Unreleased ### Added - _Component [footer]({{ componentPath &#39;@footer&#39; }})_: Added copyright to the footer ### Changed - _Component [accordion]({{ componentPath &#39;@accordion&#39; }})_: Replaced title divs with header elements - _Component [textarea]({{ componentPath &#39;@textarea&#39; }})_: Label font made bold ### Removed - _Component [sidenav]({{ componentPath &#39;@sidenav&#39; }})_: removed class `my-class-1` from `ul` element ## [1.</description>
+    </item>
+    
+    <item>
+      <title>Acceptance Testing A Service With Behat And Mink Sessions</title>
+      <link>http://seanwallis.com/post/service-testing-with-behat-mink/</link>
+      <pubDate>Mon, 04 Dec 2017 16:35:40 +0000</pubDate>
+      
+      <guid>http://seanwallis.com/post/service-testing-with-behat-mink/</guid>
+      <description>Running automated acceptance tests are an excellent way to verify your application does exactly what it is intended to do. Each time you make changes to your application, your previous tests will always be there to give assurance that new functionality does not break anything.
+In this post we&#39;ll look at how we can use Mink and Behat to simulate the interaction between a browser session and a simple service api.</description>
+    </item>
+    
+    <item>
+      <title>Why Couscous Is Good For Documentation</title>
+      <link>http://seanwallis.com/post/why-couscous-is-good/</link>
+      <pubDate>Sat, 18 Nov 2017 10:11:47 +0000</pubDate>
+      
+      <guid>http://seanwallis.com/post/why-couscous-is-good/</guid>
+      <description>Writing documentation can seem like a chore, or even an afterthought. Yet we know that it&#39;s important so that others can use or maintain our code in future.
+That&#39;s where Couscous comes in. Couscous is a static website generator for your documentation. It takes your markdown files and then converts them to HTML, allowing you to quickly serve up your documentation in a readable format. You can even deploy directly to GitHub pages.</description>
+    </item>
+    
+    <item>
+      <title>Testing Time</title>
+      <link>http://seanwallis.com/post/testing-time/</link>
+      <pubDate>Thu, 02 Nov 2017 20:31:06 +0000</pubDate>
+      
+      <guid>http://seanwallis.com/post/testing-time/</guid>
+      <description>&lt;p&gt;Sometimes when unit testing PHP code, we run into things that are difficult to mock. This post will introduce how you can mock built-in php functions such as time() and mt_rand().&lt;/p&gt;
+&lt;h2 id=&#34;mocking-time&#34;&gt;Mocking time()&lt;/h2&gt;
+&lt;p&gt;Let&#39;s take the below example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;namespace Example\Namespace;
+
+function displayGreeting()
+{
+    $time = time();
+    $hour = date(&amp;#34;g&amp;#34;, $time);
+    $meridiem = date(&amp;#34;A&amp;#34;, $time);
+    if ($meridiem == &amp;#34;AM&amp;#34;) {
+        return &amp;#39;Good Morning&amp;#39;;
+    }
+    if ($hour &lt;span class=&#34;err&#34;&gt;&amp;lt;&lt;/span&gt;= 6 || $hour == 12) {
+        return &amp;#39;Good Afternoon&amp;#39;;
+    }
+    return &amp;#39;Good Evening&amp;#39;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In order to fully test our display greeting function we need to be able to manipulate the time element, without having to change any system settings.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
