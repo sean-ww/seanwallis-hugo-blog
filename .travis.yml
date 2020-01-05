@@ -9,6 +9,7 @@ install:
 
 script:
   - hugo
+  - echo 'seanwallis.com' > public/CNAME
 
 # Deploy to GitHub pages
 deploy:
