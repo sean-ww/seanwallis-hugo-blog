@@ -10,9 +10,8 @@ install:
 script:
   - hugo --cleanDestinationDir --debug --gc --ignoreCache --verbose
   - echo 'seanwallis.com' > public/CNAME
-  - cd public
-  - ls
-  - cat index.html
+  - cd themes/hugo-nuo
+  - lss
 
 # Deploy to GitHub pages
 deploy:
