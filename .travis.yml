@@ -10,6 +10,8 @@ install:
 script:
   - hugo
   - echo 'seanwallis.com' > public/CNAME
+  - ls
+  - cat index.html
 
 # Deploy to GitHub pages
 deploy:
