@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Sean Wallis</title>
@@ -57,7 +57,7 @@ The Web Content Accessibility Guidelines (WCAG) are accessibility recommendation
       
       <guid>http://seanwallis.com/post/service-testing-with-behat-mink/</guid>
       <description>Running automated acceptance tests are an excellent way to verify your application does exactly what it is intended to do. Each time you make changes to your application, your previous tests will always be there to give assurance that new functionality does not break anything.
-In this post we&#39;ll look at how we can use Mink and Behat to simulate the interaction between a browser session and a simple service api.</description>
+In this post we&amp;rsquo;ll look at how we can use Mink and Behat to simulate the interaction between a browser session and a simple service api.</description>
     </item>
     
     <item>
@@ -66,8 +66,8 @@ In this post we&#39;ll look at how we can use Mink and Behat to simulate the int
       <pubDate>Sat, 18 Nov 2017 10:11:47 +0000</pubDate>
       
       <guid>http://seanwallis.com/post/why-couscous-is-good/</guid>
-      <description>Writing documentation can seem like a chore, or even an afterthought. Yet we know that it&#39;s important so that others can use or maintain our code in future.
-That&#39;s where Couscous comes in. Couscous is a static website generator for your documentation. It takes your markdown files and then converts them to HTML, allowing you to quickly serve up your documentation in a readable format. You can even deploy directly to GitHub pages.</description>
+      <description>Writing documentation can seem like a chore, or even an afterthought. Yet we know that it&amp;rsquo;s important so that others can use or maintain our code in future.
+That&amp;rsquo;s where Couscous comes in. Couscous is a static website generator for your documentation. It takes your markdown files and then converts them to HTML, allowing you to quickly serve up your documentation in a readable format. You can even deploy directly to GitHub pages.</description>
     </item>
     
     <item>
@@ -77,24 +77,26 @@ That&#39;s where Couscous comes in. Couscous is a static website generator for y
       
       <guid>http://seanwallis.com/post/testing-time/</guid>
       <description>&lt;p&gt;Sometimes when unit testing PHP code, we run into things that are difficult to mock. This post will introduce how you can mock built-in php functions such as time() and mt_rand().&lt;/p&gt;
-&lt;h2 id=&#34;mocking-time&#34;&gt;Mocking time()&lt;/h2&gt;
-&lt;p&gt;Let&#39;s take the below example:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;namespace Example\Namespace;
 
-function displayGreeting()
-{
-    $time = time();
-    $hour = date(&amp;#34;g&amp;#34;, $time);
-    $meridiem = date(&amp;#34;A&amp;#34;, $time);
-    if ($meridiem == &amp;#34;AM&amp;#34;) {
-        return &amp;#39;Good Morning&amp;#39;;
-    }
-    if ($hour &lt;span class=&#34;err&#34;&gt;&amp;lt;&lt;/span&gt;= 6 || $hour == 12) {
-        return &amp;#39;Good Afternoon&amp;#39;;
-    }
-    return &amp;#39;Good Evening&amp;#39;;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In order to fully test our display greeting function we need to be able to manipulate the time element, without having to change any system settings.&lt;/p&gt;</description>
+&lt;h2 id=&#34;mocking-time&#34;&gt;Mocking time()&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s take the below example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;x&#34;&gt;namespace Example\Namespace;
+&lt;/span&gt;&lt;span class=&#34;x&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;x&#34;&gt;function displayGreeting()
+&lt;/span&gt;&lt;span class=&#34;x&#34;&gt;{
+&lt;/span&gt;&lt;span class=&#34;x&#34;&gt;    $time = time();
+&lt;/span&gt;&lt;span class=&#34;x&#34;&gt;    $hour = date(&amp;#34;g&amp;#34;, $time);
+&lt;/span&gt;&lt;span class=&#34;x&#34;&gt;    $meridiem = date(&amp;#34;A&amp;#34;, $time);
+&lt;/span&gt;&lt;span class=&#34;x&#34;&gt;    if ($meridiem == &amp;#34;AM&amp;#34;) {
+&lt;/span&gt;&lt;span class=&#34;x&#34;&gt;        return &amp;#39;Good Morning&amp;#39;;
+&lt;/span&gt;&lt;span class=&#34;x&#34;&gt;    }
+&lt;/span&gt;&lt;span class=&#34;x&#34;&gt;    if ($hour &amp;lt;= 6 || $hour == 12) {
+&lt;/span&gt;&lt;span class=&#34;x&#34;&gt;        return &amp;#39;Good Afternoon&amp;#39;;
+&lt;/span&gt;&lt;span class=&#34;x&#34;&gt;    }
+&lt;/span&gt;&lt;span class=&#34;x&#34;&gt;    return &amp;#39;Good Evening&amp;#39;;
+&lt;/span&gt;&lt;span class=&#34;x&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In order to fully test our display greeting function we need to be able to manipulate the time element, without having to change any system settings.&lt;/p&gt;</description>
     </item>
     
   </channel>
