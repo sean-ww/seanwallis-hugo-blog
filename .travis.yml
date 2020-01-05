@@ -8,9 +8,11 @@ install:
   - sudo dpkg -i hugo*.deb
 
 script:
-  - cd themes/hugo-nuo
-  - ls
-  - hugo --cleanDestinationDir --debug --gc --ignoreCache --verbose
+  - cd themes
+  - wget https://github.com/sean-ww/hugo-nuo/archive/master.zip - temp.zip; unzip temp.zip; rm temp.zip;
+  - mv hugo-nuo-master hugo-nuo
+  - cd ../
+  - hugo --cleanDestinationDir --debug --ignoreCache --verbose
   - echo 'seanwallis.com' > public/CNAME
   - cd public
   - ls
