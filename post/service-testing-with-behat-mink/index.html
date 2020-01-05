@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Acceptance Testing A Service With Behat And Mink Sessions</title>
+
+  
+  
+
+
+
+
+
+<meta name="author" content="Sean Wallis" />
+<meta name="description" content="Running automated acceptance tests are an excellent way to verify your application does exactly what it is intended to do. Each time you make changes to your application, your previous tests will always be there to give assurance that new functionality does not break anything.
+In this post we&amp;rsquo;ll look at how we can use Mink and Behat to simulate the interaction between a browser session and a simple service api." />
+
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@seanwallisuk" />
+<meta name="twitter:title" content="Acceptance Testing A Service With Behat And Mink Sessions" />
+<meta name="twitter:description" content="Running automated acceptance tests are an excellent way to verify your application does exactly what it is intended to do. Each time you make changes to your application, your previous tests will always be there to give assurance that new functionality does not break anything.
+In this post we&amp;rsquo;ll look at how we can use Mink and Behat to simulate the interaction between a browser session and a simple service api." />
+<meta name="twitter:image" content="http://seanwallis.com/img/avatar.jpg" />
+
+
+
+
+
+<meta name="generator" content="Hugo 0.32.4" />
+
+
+<link rel="canonical" href="http://seanwallis.com/post/service-testing-with-behat-mink/" />
+<link rel="alternative" href="http://seanwallis.com/index.xml" title="Sean Wallis" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Sean Wallis" />
+<meta name="msapplication-tooltip" content="Sean Wallis" />
+<meta name='msapplication-navbutton-color' content="#2576c0" />
+<meta name="msapplication-TileColor" content="#2576c0" />
+<link rel="icon" href="http://seanwallis.com/img/favicon.ico" />
+<link rel="apple-touch-icon" href="http://seanwallis.com/img/apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="http://seanwallis.com/img/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="http://seanwallis.com/img/apple-touch-icon-114x114.png" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="http://seanwallis.com/css/bundle.css" />
+
+
+<link rel="stylesheet" href="http://seanwallis.com/css/highlight/zenburn.css" />
+<script rel="text/javascript" src="http://seanwallis.com/js/highlight.pack.js" ></script>
+<script> hljs.initHighlightingOnLoad();</script>
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        
+      
+    </div>
+    
+    
+<header class="site-header">
+    <a href="http://seanwallis.com/" title="Home">
+        <img class="avatar" src="http://seanwallis.com/media/links/profile.jpg" alt="Avatar">
+    </a>
+    
+    <h2 class="title">Sean Wallis</h2>
+    
+    <p class="subtitle">Full Stack Developer @Enrise.
+PHP. JavaScript. React.</p>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <nav class="social-menu">
+        <ul class="social-list">
+
+            
+
+            
+            <li class="social-item">
+                <a href="//github.com/sean-ww" title="GitHub"><span class="icon icon-github"></span></a>
+            </li>
+
+            <li class="social-item">
+            <a href="//twitter.com/seanwallisuk" title="Twitter"><span class="icon icon-twitter"></span></a>
+        </li>
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            <li class="social-item">
+            <a href="//www.linkedin.com/in/seanwallis1" title="Linkedin"><span class="icon icon-linkedin"></span></a>
+        </li>
+
+            
+
+            
+
+            
+
+            
+            
+            
+
+        </ul>
+    </nav>
+</header>
+
+<section class="main post-detail">
+  <header class="post-header">
+    <h1 class="post-title">Acceptance Testing A Service With Behat And Mink Sessions</h1>
+    <span class="post-meta">@Sean Wallis · Dec 4, 2017 · 8 min read</span>
+    <nav class="social-menu" style="display: inline-block;">
+    <ul class="social-list">
+
+        <li class="social-item">
+            
+                <a href="//twitter.com/intent/tweet?text=Acceptance%20Testing%20A%20Service%20With%20Behat%20And%20Mink%20Sessions&url=http%3a%2f%2fseanwallis.com%2fpost%2fservice-testing-with-behat-mink%2f" title="Share on Twitter"><span class="icon icon-twitter"></span></a>
+            
+        </li>
+
+        <li class="social-item">
+            <a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fseanwallis.com%2fpost%2fservice-testing-with-behat-mink%2f" title="Share on Facebook"><span class="icon icon-facebook"></span></a>
+        </li>
+
+        <li class="social-item">
+            <a href="//www.linkedin.com/shareArticle?mini=true&title=Acceptance%20Testing%20A%20Service%20With%20Behat%20And%20Mink%20Sessions&url=http%3a%2f%2fseanwallis.com%2fpost%2fservice-testing-with-behat-mink%2f" title="Share on Linkedin"><span class="icon icon-linkedin"></span></a>
+        </li>
+
+    </ul>
+</nav>
+
+  </header>
+  <article class="post-content">
+
+<p>Running automated acceptance tests are an excellent way to verify your application does exactly what it is intended to do. Each time you make changes to your application, your previous tests will always be there to give assurance that new functionality does not break anything.</p>
+
+<p>In this post we&rsquo;ll look at how we can use Mink and Behat to simulate the interaction between a browser session and a simple service api.</p>
+
+<p>For our example, we&rsquo;ll access all endpoints via <code>https://localhost/example-api</code>, and any data will be returned in a JSON format.</p>
+
+<h2 id="fake-login">Fake Login</h2>
+
+<p>A <code>/login</code> endpoint will set our session and a <code>/logout</code> endpoint will destroy our session. Both will return a 204 when successful.</p>
+
+<h2 id="our-new-feature">Our New Feature</h2>
+
+<p>We are going to add a feature that returns data as json only once we have our fake login session:</p>
+
+<pre><code>Status: 200 OK
+</code></pre>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span><span class="nt">&#34;simpleExample&#34;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&#34;user&#34;</span><span class="p">:</span><span class="s2">&#34;anon&#34;</span><span class="p">}</span></code></pre></div>
+<p>And when a session is not present our endpoint will return a 401 error:</p>
+
+<pre><code>Status: 401 UNAUTHORIZED
+</code></pre>
+
+<h2 id="initial-setup">Initial Setup</h2>
+
+<p>Before getting started with on our feature, we first need our simple login / logout service application. For this we&rsquo;ll use Slim.</p>
+
+<p>So let&rsquo;s create an example-api directory and then composer require slim:</p>
+
+<pre><code>composer require slim/slim &quot;^3.0&quot;
+</code></pre>
+
+<p>Slim will be used to handle our routing and give our responses.</p>
+
+<p>To do this, and keep our example simple, we&rsquo;ll create an index.php file in our project root and send all requests via that file.</p>
+
+<p>If you&rsquo;re using Apache you can add a .htaccess file to achieve this:</p>
+
+<pre><code>&lt;IfModule mod_rewrite.c&gt;
+
+# Turn on the engine:
+RewriteEngine on
+
+# Force https
+RewriteCond %{HTTPS} !on
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+# Use index.php
+RewriteRule ^ index.php
+
+&lt;/IfModule&gt;
+
+</code></pre>
+
+<p>We&rsquo;re also enforcing https in the above example.</p>
+
+<p>We can now add our routes and simple session to our index.php file:</p>
+
+<pre><code>&lt;?php
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface;
+
+require 'vendor/autoload.php';
+
+session_start();
+$app = new \Slim\App;
+
+$app-&gt;get('/login', function (ServerRequestInterface $request, ResponseInterface $response) {
+    $_SESSION[&quot;loggedIn&quot;] = true;
+    return $response-&gt;withStatus(204);
+});
+
+$app-&gt;get('/logout', function (ServerRequestInterface $request, ResponseInterface $response) {
+    session_destroy();
+    return $response-&gt;withStatus(204);
+});
+
+$app-&gt;run();
+
+</code></pre>
+
+<p>This gives us our first two endpoints.</p>
+
+<h2 id="putting-acceptance-tests-in-place">Putting Acceptance Tests In Place</h2>
+
+<p>Now that we have our starting point, let&rsquo;s add our dev dependencies:</p>
+
+<p>We&rsquo;ll use Behat for acceptance testing:</p>
+
+<pre><code>composer require --dev behat/behat
+</code></pre>
+
+<p>Then Mink as our web browser emulator:</p>
+
+<pre><code>composer require --dev behat/mink
+</code></pre>
+
+<p>Next we&rsquo;ll add a Mink Extension that provides extra functionality we can use:</p>
+
+<pre><code>composer require --dev behat/mink-extension
+</code></pre>
+
+<p>And lastly, let&rsquo;s pick the Goutte driver which allows us to use a fast headless browser for testing.</p>
+
+<pre><code>composer require --dev behat/mink-goutte-driver
+</code></pre>
+
+<p>Which all together looks like this (at the time of writing):</p>
+
+<pre><code>{
+    &quot;require&quot;: {
+        &quot;slim/slim&quot;: &quot;^3.0&quot;
+    },
+    &quot;require-dev&quot;: {
+        &quot;behat/behat&quot;: &quot;^3.4&quot;,
+        &quot;behat/mink&quot;: &quot;^1.7&quot;,
+        &quot;behat/mink-extension&quot;: &quot;^2.3&quot;,
+        &quot;behat/mink-goutte-driver&quot;: &quot;^1.2&quot;
+    }
+}
+</code></pre>
+
+<p>Now we have everything we need, we can start to use it. We can create Behat&rsquo;s default test suite using:</p>
+
+<pre><code>vendor/bin/behat --init
+</code></pre>
+
+<p>This will create a features folder containing a bootstrap folder with a FeatureContext.php file.</p>
+
+<p>We then want to update that feature context file to extend MinkContext:</p>
+
+<pre><code>&lt;?php
+
+use Behat\MinkExtension\Context\MinkContext;
+
+/**
+ * Defines application features from the specific context.
+ */
+class FeatureContext extends MinkContext
+{
+}
+</code></pre>
+
+<p>And create a behat.yml file in our project root:</p>
+
+<pre><code>default:
+    extensions:
+        Behat\MinkExtension:
+          base_url: https://localhost/example-api
+          goutte: ~
+</code></pre>
+
+<p>In this file we select the goutte driver and set our base url.</p>
+
+<p>Now let&rsquo;s add some tests:</p>
+
+<pre><code>Feature: Login
+  In order to access session data
+  As a service user
+  I need to be able to log in to access a session and log out after.
+
+  Scenario: Logging in and setting the session
+    Given I go to &quot;/login&quot;
+    Then the response status code should be 204
+
+  Scenario: Logging out and destroying the session
+    Given I go to &quot;/logout&quot;
+    Then the response status code should be 204
+
+</code></pre>
+
+<p>We add the above to a <code>login.feature</code> file inside our features directory.</p>
+
+<p>The feature starts by describing a user story for our fake login session. The story is written from the perspective of the service user.</p>
+
+<p>We then define two scenarios: one for logging in and one for logging out.</p>
+
+<p>Now we can run Behat:</p>
+
+<pre><code>vendor/bin/behat
+</code></pre>
+
+<p>And we get the below response and find our feature passes:</p>
+
+<pre><code>Feature: Login
+  In order to access session data
+  As a service user
+  I need to be able to log in to access a session and log out after.
+
+  Scenario: Logging in and setting the session  # features/login.feature:6
+    Given I go to &quot;/login&quot;                      # FeatureContext::visit()
+    Then the response status code should be 204 # FeatureContext::assertResponseStatus()
+
+  Scenario: Logging out and destroying the session # features/login.feature:10
+    Given I go to &quot;/logout&quot;                        # FeatureContext::visit()
+    Then the response status code should be 204    # FeatureContext::assertResponseStatus()
+
+2 scenarios (2 passed)
+4 steps (4 passed)
+0m0.51s (14.78Mb)
+</code></pre>
+
+<h2 id="adding-a-data-endpoint">Adding A Data Endpoint</h2>
+
+<p>We are now in a position to add our data feature:</p>
+
+<pre><code>Feature: Access Example Data
+  In order to access example data
+  As a service user
+  I need to be able to view data using the service when logged in.
+
+  Scenario: I try to retrieve data when logged out
+    Given I go to &quot;/logout&quot;
+    And the response status code should be 204
+    When I go to &quot;/data&quot;
+    Then the response status code should be 401
+
+  Scenario: I try to retrieve data when logged in
+    Given I go to &quot;/login&quot;
+    And the response status code should be 204
+    When I go to &quot;/data&quot;
+    Then the response status code should be 200
+    And the response body should be
+    &quot;&quot;&quot;
+    {&quot;simpleExample&quot;:true,&quot;user&quot;:&quot;anon&quot;}
+    &quot;&quot;&quot;
+
+</code></pre>
+
+<p>We add the above to a <code>data.feature</code> file inside our features directory.</p>
+
+<p>The above scenarios contain a new step to check the response body, then otherwise we use the same steps as our first feature (notice the use of &lsquo;And&rsquo;, &lsquo;When&rsquo; and &lsquo;Then&rsquo; are completely interchangeable).</p>
+
+<p>Now when we run Behat we should get the below:</p>
+
+<pre><code>&gt;&gt; default suite has undefined steps. Please choose the context to generate snippets:
+
+  [0] None
+  [1] FeatureContext
+
+</code></pre>
+
+<p>In our scenarios, each of our lines represent a step and these steps need to be defined in our featureContext.php file (or MinkContext).</p>
+
+<p>So if we press 1, and then enter, Behat will generate a code snippet for us to add to our context file:</p>
+
+<pre><code>&lt;?php
+
+use Behat\MinkExtension\Context\MinkContext;
+use Behat\Gherkin\Node\PyStringNode;
+use Behat\Behat\Tester\Exception\PendingException;
+
+/**
+ * Defines application features from the specific context.
+ */
+class FeatureContext extends MinkContext
+{
+    /**
+     * @Then the response body should be
+     */
+    public function theResponseBodyShouldBe(PyStringNode $string)
+    {
+        throw new PendingException();
+    }
+}
+</code></pre>
+
+<p>If we try to run Behat again our feature should now fail. Before we make our test pass, let&rsquo;s complete our theResponseBodyShouldBe function:</p>
+
+<pre><code>&lt;?php
+
+use Behat\MinkExtension\Context\MinkContext;
+
+/**
+ * Defines application features from the specific context.
+ */
+class FeatureContext extends MinkContext
+{
+    /**
+     * @Then the response body should be
+     *
+     * This method can be used to check an entire json response.
+     *
+     * @param string $expectedResponseBody The expected json response.
+     *
+     * @throws \Exception Expected response body was &quot;%s&quot; but got &quot;%s&quot;.
+     */
+    public function theResponseBodyShouldBe($expectedResponseBody)
+    {
+        $responseBody = $this-&gt;getSession()-&gt;getPage()-&gt;getContent();
+        if ($responseBody != $expectedResponseBody) {
+            throw new \Exception(
+                sprintf(
+                    'Expected response body was &quot;%s&quot; but got &quot;%s&quot;.',
+                    $expectedResponseBody,
+                    $responseBody
+                )
+            );
+        }
+    }
+}
+</code></pre>
+
+<p>The above code checks the response body matches our assertion. In reality you may wish to break this down further to check for a JSON response, and then check individual parameters.</p>
+
+<p>We can now add our data route to index.php:</p>
+
+<pre><code>&lt;?php
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface;
+
+require 'vendor/autoload.php';
+
+session_start();
+$app = new \Slim\App;
+
+$app-&gt;get('/login', function (ServerRequestInterface $request, ResponseInterface $response) {
+    $_SESSION[&quot;loggedIn&quot;] = true;
+    return $response-&gt;withStatus(204);
+});
+
+$app-&gt;get('/logout', function (ServerRequestInterface $request, ResponseInterface $response) {
+    session_destroy();
+    return $response-&gt;withStatus(204);
+});
+
+$app-&gt;get('/data', function (ServerRequestInterface $request, ResponseInterface $response) {
+    if (isset($_SESSION[&quot;loggedIn&quot;]) &amp;&amp; $_SESSION[&quot;loggedIn&quot;]) {
+        return $response-&gt;withJson(
+            [
+                'simpleExample' =&gt; true,
+                'user' =&gt; 'anon'
+            ],
+            200
+        );
+    }
+    return $response-&gt;withStatus(401);
+});
+
+$app-&gt;run();
+
+</code></pre>
+
+<p>In this code we check for our fake login session and return the data, else a 401.</p>
+
+<p>So this time we run our test everything should pass:</p>
+
+<pre><code>Feature: Access Example Data
+  In order to access example data
+  As a service user
+  I need to be able to view data using the service when logged in.
+
+  Scenario: I try to retrieve data when logged out # features/data.feature:6
+    Given I go to &quot;/logout&quot;                        # FeatureContext::visit()
+    And the response status code should be 204     # FeatureContext::assertResponseStatus()
+    When I go to &quot;/data&quot;                           # FeatureContext::visit()
+    Then the response status code should be 401    # FeatureContext::assertResponseStatus()
+
+  Scenario: I try to retrieve data when logged in # features/data.feature:12
+    Given I go to &quot;/login&quot;                        # FeatureContext::visit()
+    And the response status code should be 204    # FeatureContext::assertResponseStatus()
+    When I go to &quot;/data&quot;                          # FeatureContext::visit()
+    Then the response status code should be 200   # FeatureContext::assertResponseStatus()
+    And the response body should be               # FeatureContext::theResponseBodyShouldBe()
+      &quot;&quot;&quot;
+      {&quot;simpleExample&quot;:true,&quot;user&quot;:&quot;anon&quot;}
+      &quot;&quot;&quot;
+
+Feature: Login
+  In order to access session data
+  As a service user
+  I need to be able to log in to access a session and log out after.
+
+  Scenario: Logging in and setting the session  # features/login.feature:6
+    Given I go to &quot;/login&quot;                      # FeatureContext::visit()
+    Then the response status code should be 204 # FeatureContext::assertResponseStatus()
+
+  Scenario: Logging out and destroying the session # features/login.feature:10
+    Given I go to &quot;/logout&quot;                        # FeatureContext::visit()
+    Then the response status code should be 204    # FeatureContext::assertResponseStatus()
+
+4 scenarios (4 passed)
+13 steps (13 passed)
+0m0.66s (15.00Mb)
+</code></pre>
+
+<h2 id="tagging">Tagging</h2>
+
+<p>One final point would be to introduce tags. As you build up many tests tagging becomes especially useful.</p>
+
+<p>We can add a tag to the top of our feature files, which will allow us to run those features in isolation, or in groups:</p>
+
+<pre><code>@data
+Feature: Access Example Data
+  In order to access example data
+  ...
+</code></pre>
+
+<p>To execute this we add a tags parameter and define the tag:</p>
+
+<pre><code>vendor/bin/behat --tags @data
+</code></pre>
+</article>
+  <footer class="post-footer">
+    <nav class="social-menu" style="display: inline-block;">
+    <ul class="social-list">
+
+        <li class="social-item">
+            
+                <a href="//twitter.com/intent/tweet?text=Acceptance%20Testing%20A%20Service%20With%20Behat%20And%20Mink%20Sessions&url=http%3a%2f%2fseanwallis.com%2fpost%2fservice-testing-with-behat-mink%2f" title="Share on Twitter"><span class="icon icon-twitter"></span></a>
+            
+        </li>
+
+        <li class="social-item">
+            <a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fseanwallis.com%2fpost%2fservice-testing-with-behat-mink%2f" title="Share on Facebook"><span class="icon icon-facebook"></span></a>
+        </li>
+
+        <li class="social-item">
+            <a href="//www.linkedin.com/shareArticle?mini=true&title=Acceptance%20Testing%20A%20Service%20With%20Behat%20And%20Mink%20Sessions&url=http%3a%2f%2fseanwallis.com%2fpost%2fservice-testing-with-behat-mink%2f" title="Share on Linkedin"><span class="icon icon-linkedin"></span></a>
+        </li>
+
+    </ul>
+</nav>
+
+    
+    <p class="post-copyright">
+      This post was published <strong>762</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+    </p>
+  </footer>
+  
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "seanwallis" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+  
+</section>
+<footer class="site-footer">
+  <p>© 2017-2020 Sean Wallis</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/sean-ww/hugo-nuo" target="_blank">Nuo</a>.</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="http://seanwallis.com/js/bundle.js"></script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-XXXXXXXX-X', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+  </body>
+</html>

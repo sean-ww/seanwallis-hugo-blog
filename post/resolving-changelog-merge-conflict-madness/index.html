@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Resolving Changelog Merge Conflict Madness</title>
+
+  
+  
+
+
+
+
+
+<meta name="author" content="Sean Wallis" />
+<meta name="description" content="We start with an innocent looking changelog.
+--- title: Changelog status: ready # draft, ready --- All notable changes to this project will be documented in this file.&amp;lt;br&amp;gt; The format is based on [Keep a Changelog](http://keepachangelog.com) ## [2.0.0] - Unreleased ### Added - _Component [footer]({{ componentPath &#39;@footer&#39; }})_: Added copyright to the footer ### Changed - _Component [accordion]({{ componentPath &#39;@accordion&#39; }})_: Replaced title divs with header elements - _Component [textarea]({{ componentPath &#39;@textarea&#39; }})_: Label font made bold ### Removed - _Component [sidenav]({{ componentPath &#39;@sidenav&#39; }})_: removed class `my-class-1` from `ul` element ## [1." />
+
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@seanwallisuk" />
+<meta name="twitter:title" content="Resolving Changelog Merge Conflict Madness" />
+<meta name="twitter:description" content="We start with an innocent looking changelog.
+--- title: Changelog status: ready # draft, ready --- All notable changes to this project will be documented in this file.&amp;lt;br&amp;gt; The format is based on [Keep a Changelog](http://keepachangelog.com) ## [2.0.0] - Unreleased ### Added - _Component [footer]({{ componentPath &#39;@footer&#39; }})_: Added copyright to the footer ### Changed - _Component [accordion]({{ componentPath &#39;@accordion&#39; }})_: Replaced title divs with header elements - _Component [textarea]({{ componentPath &#39;@textarea&#39; }})_: Label font made bold ### Removed - _Component [sidenav]({{ componentPath &#39;@sidenav&#39; }})_: removed class `my-class-1` from `ul` element ## [1." />
+<meta name="twitter:image" content="http://seanwallis.com/img/avatar.jpg" />
+
+
+
+
+
+<meta name="generator" content="Hugo 0.32.4" />
+
+
+<link rel="canonical" href="http://seanwallis.com/post/resolving-changelog-merge-conflict-madness/" />
+<link rel="alternative" href="http://seanwallis.com/index.xml" title="Sean Wallis" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Sean Wallis" />
+<meta name="msapplication-tooltip" content="Sean Wallis" />
+<meta name='msapplication-navbutton-color' content="#2576c0" />
+<meta name="msapplication-TileColor" content="#2576c0" />
+<link rel="icon" href="http://seanwallis.com/img/favicon.ico" />
+<link rel="apple-touch-icon" href="http://seanwallis.com/img/apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="http://seanwallis.com/img/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="http://seanwallis.com/img/apple-touch-icon-114x114.png" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="http://seanwallis.com/css/bundle.css" />
+
+
+<link rel="stylesheet" href="http://seanwallis.com/css/highlight/zenburn.css" />
+<script rel="text/javascript" src="http://seanwallis.com/js/highlight.pack.js" ></script>
+<script> hljs.initHighlightingOnLoad();</script>
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        
+      
+    </div>
+    
+    
+<header class="site-header">
+    <a href="http://seanwallis.com/" title="Home">
+        <img class="avatar" src="http://seanwallis.com/media/links/profile.jpg" alt="Avatar">
+    </a>
+    
+    <h2 class="title">Sean Wallis</h2>
+    
+    <p class="subtitle">Full Stack Developer @Enrise.
+PHP. JavaScript. React.</p>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <nav class="social-menu">
+        <ul class="social-list">
+
+            
+
+            
+            <li class="social-item">
+                <a href="//github.com/sean-ww" title="GitHub"><span class="icon icon-github"></span></a>
+            </li>
+
+            <li class="social-item">
+            <a href="//twitter.com/seanwallisuk" title="Twitter"><span class="icon icon-twitter"></span></a>
+        </li>
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            <li class="social-item">
+            <a href="//www.linkedin.com/in/seanwallis1" title="Linkedin"><span class="icon icon-linkedin"></span></a>
+        </li>
+
+            
+
+            
+
+            
+
+            
+            
+            
+
+        </ul>
+    </nav>
+</header>
+
+<section class="main post-detail">
+  <header class="post-header">
+    <h1 class="post-title">Resolving Changelog Merge Conflict Madness</h1>
+    <span class="post-meta">@Sean Wallis · Nov 5, 2018 · 2 min read</span>
+    <nav class="social-menu" style="display: inline-block;">
+    <ul class="social-list">
+
+        <li class="social-item">
+            
+                <a href="//twitter.com/intent/tweet?text=Resolving%20Changelog%20Merge%20Conflict%20Madness&url=http%3a%2f%2fseanwallis.com%2fpost%2fresolving-changelog-merge-conflict-madness%2f" title="Share on Twitter"><span class="icon icon-twitter"></span></a>
+            
+        </li>
+
+        <li class="social-item">
+            <a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fseanwallis.com%2fpost%2fresolving-changelog-merge-conflict-madness%2f" title="Share on Facebook"><span class="icon icon-facebook"></span></a>
+        </li>
+
+        <li class="social-item">
+            <a href="//www.linkedin.com/shareArticle?mini=true&title=Resolving%20Changelog%20Merge%20Conflict%20Madness&url=http%3a%2f%2fseanwallis.com%2fpost%2fresolving-changelog-merge-conflict-madness%2f" title="Share on Linkedin"><span class="icon icon-linkedin"></span></a>
+        </li>
+
+    </ul>
+</nav>
+
+  </header>
+  <article class="post-content">
+
+<p>We start with an innocent looking changelog.</p>
+
+<pre><code>---
+title: Changelog
+status: ready # draft, ready
+---
+
+All notable changes to this project will be documented in this file.&lt;br&gt;
+The format is based on [Keep a Changelog](http://keepachangelog.com)
+
+## [2.0.0] - Unreleased
+### Added
+- _Component [footer]({{ componentPath '@footer' }})_:
+  Added copyright to the footer
+
+### Changed
+- _Component [accordion]({{ componentPath '@accordion' }})_:
+  Replaced title divs with header elements
+- _Component [textarea]({{ componentPath '@textarea' }})_:
+  Label font made bold
+
+### Removed
+- _Component [sidenav]({{ componentPath '@sidenav' }})_:
+  removed class `my-class-1` from `ul` element
+
+## [1.0.0] - 2018-04
+### Added
+- _Component [carousel]({{ componentPath '@carousel' }})_:
+  A header to the carousel component
+
+</code></pre>
+
+<p>Harmless right? OK, so the above is a simplified version of the real thing, but we get the structure.
+It&rsquo;s based upon the <a href="http://keepachangelog.com">Keep a Changelog</a> format; so for each release we have <code>Added</code>, <code>Changed</code> and <code>Removed</code> headings where applicable.
+It&rsquo;s also more than just a changelog. It gets built into a webpage using <a href="https://fractal.build/">Fractal</a>, which in turn resolves the component path links we see above on build.</p>
+
+<h3 id="so-what-s-the-problem">So what&rsquo;s the problem?</h3>
+
+<p>For every story in the release, we must add something to the changelog.
+In fact we need a separate entry for every change, removal or addition to any component.
+Which can lead to multiple changelog entries per story.
+Then imagine we have many stories in progress at the same time.
+As soon as one story gets merged into our development branch, all other stories have merge conflicts to resolve.
+Then we must resolve conflicts continually as we work to get anything through. Madness!</p>
+
+<h3 id="how-do-we-solve-this">How do we solve this</h3>
+
+<p>Fortunately this isn&rsquo;t a new problem. GitLab experienced a very similar <a href="https://about.gitlab.com/2018/07/03/solving-gitlabs-changelog-conflict-crisis/">changelog conflict crisis</a>, which gave us the basis for our solution.
+Quite simply, we stop making all of our changes in one file, and instead place our changes within unique files in a <code>changelogs/unreleased</code> folder.
+For the unreleased change files we use a simple yaml file corresponding to the story you are working on.</p>
+
+<p>So let&rsquo;s say story-5 is to add something to the carousel, whilst removing something from the footer component.</p>
+
+<pre><code># changelogs/unreleased/story-5.yaml
+changes:
+  - type: added # changed, removed, added
+    component: carousel
+    description: Added something to the carousel.
+  - type: removed
+    component: footer
+    description: Removed the footer component.
+</code></pre>
+
+<p>In the above file we only need to add the type, component and description for each change.
+The rest is taken care of by a script on our pipeline that runs when we create our release.</p>
+
+<p>Problem solved.</p>
+</article>
+  <footer class="post-footer">
+    <nav class="social-menu" style="display: inline-block;">
+    <ul class="social-list">
+
+        <li class="social-item">
+            
+                <a href="//twitter.com/intent/tweet?text=Resolving%20Changelog%20Merge%20Conflict%20Madness&url=http%3a%2f%2fseanwallis.com%2fpost%2fresolving-changelog-merge-conflict-madness%2f" title="Share on Twitter"><span class="icon icon-twitter"></span></a>
+            
+        </li>
+
+        <li class="social-item">
+            <a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fseanwallis.com%2fpost%2fresolving-changelog-merge-conflict-madness%2f" title="Share on Facebook"><span class="icon icon-facebook"></span></a>
+        </li>
+
+        <li class="social-item">
+            <a href="//www.linkedin.com/shareArticle?mini=true&title=Resolving%20Changelog%20Merge%20Conflict%20Madness&url=http%3a%2f%2fseanwallis.com%2fpost%2fresolving-changelog-merge-conflict-madness%2f" title="Share on Linkedin"><span class="icon icon-linkedin"></span></a>
+        </li>
+
+    </ul>
+</nav>
+
+    
+    <p class="post-copyright">
+      This post was published <strong>426</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+    </p>
+  </footer>
+  
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "seanwallis" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+  
+</section>
+<footer class="site-footer">
+  <p>© 2017-2020 Sean Wallis</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/sean-ww/hugo-nuo" target="_blank">Nuo</a>.</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="http://seanwallis.com/js/bundle.js"></script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-XXXXXXXX-X', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+  </body>
+</html>

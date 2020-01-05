@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>PDF Accessibility for Web Developers</title>
+
+  
+  
+
+
+
+
+
+<meta name="author" content="Sean Wallis" />
+<meta name="description" content="The Portable Document Format (PDF) is used throughout the web and beyond. Created in the 1990s by Adobe, it provides a platform independent method of accessing documents across a wide range of devices. Regardless of software, hardware and operating system: PDF layouts, text, fonts, colours and graphics should all remain the same. Which all sounds very accessible, but is it?
+Unfortunately PDFs are not by default accessible to everyone, yet with the right content and a tagged structure they can be greatly improved if opened with the correct software." />
+
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@seanwallisuk" />
+<meta name="twitter:title" content="PDF Accessibility for Web Developers" />
+<meta name="twitter:description" content="The Portable Document Format (PDF) is used throughout the web and beyond. Created in the 1990s by Adobe, it provides a platform independent method of accessing documents across a wide range of devices. Regardless of software, hardware and operating system: PDF layouts, text, fonts, colours and graphics should all remain the same. Which all sounds very accessible, but is it?
+Unfortunately PDFs are not by default accessible to everyone, yet with the right content and a tagged structure they can be greatly improved if opened with the correct software." />
+<meta name="twitter:image" content="http://seanwallis.com/media/posts/pdf-accessibility-for-web-developers/pdf-accessibility-cover.jpg" />
+
+
+
+
+
+<meta name="generator" content="Hugo 0.32.4" />
+
+
+<link rel="canonical" href="http://seanwallis.com/post/pdf-accessibility-for-web-developers/" />
+<link rel="alternative" href="http://seanwallis.com/index.xml" title="Sean Wallis" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Sean Wallis" />
+<meta name="msapplication-tooltip" content="Sean Wallis" />
+<meta name='msapplication-navbutton-color' content="#2576c0" />
+<meta name="msapplication-TileColor" content="#2576c0" />
+<link rel="icon" href="http://seanwallis.com/img/favicon.ico" />
+<link rel="apple-touch-icon" href="http://seanwallis.com/img/apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="http://seanwallis.com/img/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="http://seanwallis.com/img/apple-touch-icon-114x114.png" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="http://seanwallis.com/css/bundle.css" />
+
+
+<link rel="stylesheet" href="http://seanwallis.com/css/highlight/zenburn.css" />
+<script rel="text/javascript" src="http://seanwallis.com/js/highlight.pack.js" ></script>
+<script> hljs.initHighlightingOnLoad();</script>
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        
+      
+    </div>
+    
+    
+<header class="site-header">
+    <a href="http://seanwallis.com/" title="Home">
+        <img class="avatar" src="http://seanwallis.com/media/links/profile.jpg" alt="Avatar">
+    </a>
+    
+    <h2 class="title">Sean Wallis</h2>
+    
+    <p class="subtitle">Full Stack Developer @Enrise.
+PHP. JavaScript. React.</p>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <nav class="social-menu">
+        <ul class="social-list">
+
+            
+
+            
+            <li class="social-item">
+                <a href="//github.com/sean-ww" title="GitHub"><span class="icon icon-github"></span></a>
+            </li>
+
+            <li class="social-item">
+            <a href="//twitter.com/seanwallisuk" title="Twitter"><span class="icon icon-twitter"></span></a>
+        </li>
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            <li class="social-item">
+            <a href="//www.linkedin.com/in/seanwallis1" title="Linkedin"><span class="icon icon-linkedin"></span></a>
+        </li>
+
+            
+
+            
+
+            
+
+            
+            
+            
+
+        </ul>
+    </nav>
+</header>
+
+<section class="main post-detail">
+  <header class="post-header">
+    <h1 class="post-title">PDF Accessibility for Web Developers</h1>
+    <span class="post-meta">@Sean Wallis · Jun 3, 2019 · 8 min read</span>
+    <nav class="social-menu" style="display: inline-block;">
+    <ul class="social-list">
+
+        <li class="social-item">
+            
+                <a href="//twitter.com/intent/tweet?text=PDF%20Accessibility%20for%20Web%20Developers&url=http%3a%2f%2fseanwallis.com%2fpost%2fpdf-accessibility-for-web-developers%2f" title="Share on Twitter"><span class="icon icon-twitter"></span></a>
+            
+        </li>
+
+        <li class="social-item">
+            <a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fseanwallis.com%2fpost%2fpdf-accessibility-for-web-developers%2f" title="Share on Facebook"><span class="icon icon-facebook"></span></a>
+        </li>
+
+        <li class="social-item">
+            <a href="//www.linkedin.com/shareArticle?mini=true&title=PDF%20Accessibility%20for%20Web%20Developers&url=http%3a%2f%2fseanwallis.com%2fpost%2fpdf-accessibility-for-web-developers%2f" title="Share on Linkedin"><span class="icon icon-linkedin"></span></a>
+        </li>
+
+    </ul>
+</nav>
+
+  </header>
+  <article class="post-content">
+
+<p>The Portable Document Format (PDF) is used throughout the web and beyond. Created in the 1990s by Adobe, it provides a platform independent method of accessing documents across a wide range of devices. Regardless of software, hardware and operating system: PDF layouts, text, fonts, colours and graphics should all remain the same. Which all sounds very accessible, but is it?</p>
+
+<p>Unfortunately PDFs are not by default accessible to everyone, yet with the right content and a tagged structure they can be greatly improved if opened with the correct software.</p>
+
+<h2 id="what-is-a-tagged-structure">What is a tagged structure?</h2>
+
+<p>A tagged PDF is a stylised use of the PDF format that contains extra hidden structure types and attributes that optimise the reading experience of those who use screen readers or other types of assistive technology. Even a standard user benefits from tagged PDFs being more searchable, easier to extract data from and possible to convert to other formats.</p>
+
+<p>Tagged PDFs can be produced using software (such as Acrobat Pro), but we’ll focus on the challenge facing web developers, and the typical approaches a web developer might take.</p>
+
+<h2 id="the-html-to-canvas-approach">The HTML to Canvas Approach</h2>
+
+<p>With HTML to Canvas we are converting our front-end HTML to an image, which is essentially just like taking a screenshot. That image is then placed within a PDF. Then just like with a web page, if sections of your PDF are text within an image, they will not be read correctly by most assistive technology. However this approach could well be acceptable for solutions that are just going to be printed, where the document itself does not need to be accessible.</p>
+
+<h2 id="the-untagged-pdf">The Untagged PDF</h2>
+
+<p>For the most part developers will be using an existing library in order to generate PDF documents. Such libraries will allow you to add things like text, tables, images and even forms. <a href="https://mpdf.github.io/what-else-can-i-do/pdf-a1-b-compliance.html">mPDF</a> is an example of a library that even allows you to explicitly produce structured (tagged) documents. However the support they offer is not from an accessibility perspective, and it is not possible to add all the required attributes you might need for a truly accessible document.</p>
+
+<h3 id="pdf-generator-libraries">PDF Generator Libraries</h3>
+
+<p>Below are some of the available libraries for generating PDFs (JavaScript or PHP) of which mPDF is one:</p>
+
+<ul>
+<li><a href="https://github.com/MrRio/jsPDF">jsPDF</a></li>
+<li><a href="http://pdfkit.org/">PDFKit</a></li>
+<li><a href="http://pdfmake.org">pdfmake</a></li>
+<li><a href="https://tcpdf.org/">TCPDF</a></li>
+<li><a href="https://github.com/KnpLabs/snappy">Snappy</a></li>
+<li><a href="https://github.com/dompdf/dompdf">DOMPDF</a></li>
+<li><a href="https://mpdf.github.io/">mPDF</a></li>
+<li><a href="http://www.fpdf.org/">FPDF</a></li>
+</ul>
+
+<p>None of the above could be recommended for full accessibility support.</p>
+
+<h2 id="the-accessible-tagged-pdf">The Accessible Tagged PDF</h2>
+
+<p>When producing PDFs we must consider many of the same things we would within a HTML document. They include things like language level, explaining abbreviations / acronyms, colour contrast or reliance on colour to convey meaning.</p>
+
+<h3 id="default-language-and-encoding">Default Language and Encoding</h3>
+
+<p>For starters we can set the default language of the PDF by adding a <a href="https://www.w3.org/TR/WCAG20-TECHS/PDF16.html">/Lang entry</a> such as <code>/Lang (en-US)</code>. Adding the default language can aid translation software or help a screen reader read the text in the correct natural language. Then like with HTML we can take this further to <a href="https://www.w3.org/TR/WCAG20-TECHS/PDF19.html">specify when specific passages or phrases contain a different language</a>.</p>
+
+<pre><code>/P % Start of marked-content sequence
+BDC
+  (Good morning, or in Dutch you might say, ) Tj
+  /Span &lt;&lt; /Lang (nl-Nl) &gt;&gt;% Start of nested marked-content sequence
+ BDC
+  (goedemorgen.) Tj
+ EMC% End of nested marked-content sequence
+EMC% End of marked-content sequence
+</code></pre>
+
+<p>The above example allows us to override the default language within the Span. Without doing so a foreign phrase would be read in the default language, and goedemorgen spoken as an English word is a long way from the correct pronunciation. You can try yourself to <a href="https://translate.google.com/#view=home&amp;op=translate&amp;sl=en&amp;tl=nl&amp;text=goedemorgen">listen to translations in the wrong language</a>, it does not work well! Although whilst it’s harder to understand, you may find it entertaining.</p>
+
+<p>At least with the incorrect language we hear something you might be able to understand, it gets worse if you get the encoding wrong! Imagine the pronunciation of “?????” or “�����”. That’s not so user friendly. Acrobat extracts characters to Unicode text when a PDF is being read via a screen reader or when you save as text for a Braille embosser. The extraction fails if Acrobat cannot determine how to map the font to Unicode characters. In a PDF we must use fonts that can be converted to unicode text. Adobe recommend using OpenTypes typefaces. You can check for such errors by exporting your PDF to a text format and verifying the characters have mapped correctly.</p>
+
+<h3 id="security">Security</h3>
+
+<p>PDFs have the capability to restrict content and prevent users from copying, printing, extracting, commenting or editing upon a document. Such settings can however interfere with a screen reader’s ability to read the document, because screen readers must be able to copy and extract the document text in order to convert it to speech. Therefore adding such restrictions may make your document inaccessible. However, Adobe have made it possible for recognised screen readers or trusted agents to override such settings. You can consider for yourself if you wish to enable such a feature.</p>
+
+<h3 id="structure">Structure</h3>
+
+<p>It is helpful to any user if the document follows a logical structure, but the structure becomes much more important for assistive technology where the visual layout is irrelevant. Instead we rely upon the appropriate tags and tagged structure to navigate the content. The structure should result in the correct reading order, which will be more of a consideration when it comes to columns or unusual visual design layouts. Where relevant we can make use of chapters, headings, paragraphs and sections in order to separate content and give structure. Once more, just as with HTML, our <a href="https://www.w3.org/TR/WCAG20-TECHS/PDF9.html">headings</a> should not skip levels. So we start at H1, then H2, and so on.</p>
+
+<p>It is also important to consider context. If your document is a single page, you have very different structural requirements from a 100 page document. For instance, for larger documents you may make use of bookmarks to toggle between select parts of the document, or you may find value in adding footnotes. All of which can be tagged appropriately and become navigable.</p>
+
+<h3 id="tables">Tables</h3>
+
+<p>Tables are much like their HTML counter parts with a /Table tag, optional /THead, /TBody and /TFoot tags, /TR table rows and then nested inside are the /TH header cells or /TD cells. What must be considered is that there should be no missing cells (or at least to have the correct ColSpan or RowSpan to compensate) and you always enter a character within empty table cells (although the character may be visible or hidden). This is necessary to maintain the order for speech synthesisers.</p>
+
+<h3 id="images">Images</h3>
+
+<p>When adding images we have to consider the purpose of the image. Is it just a background image or purely decorative? In which case we apply the <a href="https://www.w3.org/TR/WCAG20-TECHS/PDF4.html">/Artifact</a> tag in order to ignore the image. Then for the remaining images, they should all be informative. Each informative image should use a descriptive <a href="https://www.w3.org/TR/WCAG20-TECHS/PDF13.html">alternative text</a> in order to inform the user, without the reliance on viewing the image.</p>
+
+<h3 id="forms">Forms</h3>
+
+<p>Each form should be created with a logical tab order in order for a user to navigate the form using a keyboard. Each field should also make use of a label that is explicitly associated with the corresponding field. Tooltips can also be used to provide descriptive text about the field. The tooltips can be read by screen readers. It should be noted that List boxes give accessibility issues for keyboard users and hence should be avoided. Also, for all radio buttons it is important to ensure that the name and tooltip values are the same for every button in the group. The tooltip should also be succinct as it will be read for each option in the group. Lastly an effort should be made to identify <a href="https://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/PDF5.html">required fields</a>. This can be done by incorporating the information into the label such as ‘My Field (Required)’, or if you wish to be more subtle, an asterisk could be used with a legend entry indicating ‘* = required field’.</p>
+
+<h3 id="testing-pdf-accessibility">Testing PDF Accessibility</h3>
+
+<p><a href="https://helpx.adobe.com/acrobat/using/create-verify-pdf-accessibility.html#check_accessibility_of_PDFs">Adobe Pro</a> provides both accessibility checking and fixing built into it’s paid software. Although the European Internet Inclusion Initiative (EIII) also provide a freely available tool for checking the accessibility of a PDF document at: <a href="http://checkers.eiii.eu/en/pdfcheck/">http://checkers.eiii.eu/en/pdfcheck/</a>. The checker also ties in to the Web Content Accessibility Guidelines (<a href="https://www.w3.org/WAI/standards-guidelines/wcag/">WCAG</a>) A, AA, and AAA ratings whilst providing useful explanation and links around the results.</p>
+
+<h3 id="pdf-generator-services">PDF Generator Services</h3>
+
+<p>As with the PDF generator libraries, there are also a variety of services available to generate PDFs for web developers. Of those sampled, it’s just the <a href="https://www.pdfreactor.com/">PDFreactor</a> service that gets an honorable mention. Their <a href="https://www.pdfreactor.com/product/samples/accessibility/accessibility.pdf">accessibility example</a> tested very well on JAWS, NVDA and via the EIII tool. It just suffered one drawback on Mac’s VoiceOver where the table cells where reading as blank, although that could be attributed to VoiceOver’s PDF support.</p>
+
+<h2 id="not-using-pdfs">Not using PDFs</h2>
+
+<p>Even after accounting for all the considerations to produce an accessible tagged PDF will your PDF then be accessible to everyone?</p>
+
+<p>Perhaps not. Tagged PDFs are not necessarily much use to assistive technology when opened directly in the browser, they rely on the user opening them in a suitable PDF reader. That then presents another hurdle for the user to overcome.</p>
+
+<p>It’s good to question whether PDFs are the right thing to use at all, or to consider if alternative solutions can be made available. Perhaps the content could be sent in email format, or remain on a web page that could still be printed for instance.</p>
+
+<p>Then consider browser plugins, user’s may have their own plugins that assist their usage specifically within the browser, such as translation services, colour enhancement tools and so on. None of which are available if you get sent to a PDF.</p>
+
+<h2 id="further-reading">Further Reading</h2>
+
+<p>The <a href="https://www.w3.org/TR/WCAG-TECHS/pdf.html">Web Content Accessibility Guidelines 2.0</a> can provide more depth on the subject.</p>
+
+<p>This post was also published on <a href="https://enrise.com/2019/06/pdf-accessibility-for-web-developers/">enrise.com</a></p>
+</article>
+  <footer class="post-footer">
+    <nav class="social-menu" style="display: inline-block;">
+    <ul class="social-list">
+
+        <li class="social-item">
+            
+                <a href="//twitter.com/intent/tweet?text=PDF%20Accessibility%20for%20Web%20Developers&url=http%3a%2f%2fseanwallis.com%2fpost%2fpdf-accessibility-for-web-developers%2f" title="Share on Twitter"><span class="icon icon-twitter"></span></a>
+            
+        </li>
+
+        <li class="social-item">
+            <a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fseanwallis.com%2fpost%2fpdf-accessibility-for-web-developers%2f" title="Share on Facebook"><span class="icon icon-facebook"></span></a>
+        </li>
+
+        <li class="social-item">
+            <a href="//www.linkedin.com/shareArticle?mini=true&title=PDF%20Accessibility%20for%20Web%20Developers&url=http%3a%2f%2fseanwallis.com%2fpost%2fpdf-accessibility-for-web-developers%2f" title="Share on Linkedin"><span class="icon icon-linkedin"></span></a>
+        </li>
+
+    </ul>
+</nav>
+
+    
+    <p class="post-copyright">
+      This post was published <strong>216</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+    </p>
+  </footer>
+  
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "seanwallis" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+  
+</section>
+<footer class="site-footer">
+  <p>© 2017-2020 Sean Wallis</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/sean-ww/hugo-nuo" target="_blank">Nuo</a>.</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="http://seanwallis.com/js/bundle.js"></script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-XXXXXXXX-X', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+  </body>
+</html>
