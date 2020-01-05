@@ -8,9 +8,7 @@ install:
   - sudo dpkg -i hugo*.deb
 
 script:
-  - mkdir themes
-  - wget https://github.com/sean-ww/hugo-nuo/archive/master.zip -o themes/temp.zip; unzip themes/temp.zip; rm themes/temp.zip;
-  - mv themes/hugo-nuo-master themes/hugo-nuo
+  - git clone https://github.com/sean-ww/hugo-nuo/archive/master.zip themes/hugo-nuo
   - hugo --cleanDestinationDir --debug --ignoreCache --verbose
   - echo 'seanwallis.com' > public/CNAME
   - cd public
