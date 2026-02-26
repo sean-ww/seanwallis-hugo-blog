@@ -1,4 +1,4 @@
-baseURL = "http://seanwallis.com/"
+baseURL = "https://seanwallis.com/"
 languageCode = "en"
 title = "Sean Wallis"
 theme = "hugo-nuo"
