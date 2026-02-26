@@ -1,0 +1,47 @@
+name: Build and Deploy Hugo Site
+
+# Trigger on pushes to master
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-deploy:
+    name: Build and deploy Hugo
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Check out code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      # 2. Install Hugo
+      - name: Install Hugo
+        run: |
+          HUGO_VERSION=0.32.4
+          URL="https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.deb"
+          echo "Downloading Hugo from $URL"
+          curl -OLkSs "$URL"
+          sudo dpkg -i hugo*.deb
+
+      # 3. Clone theme
+      - name: Fetch Hugo theme
+        run: git clone https://github.com/sean-ww/hugo-nuo themes/hugo-nuo
+
+      # 4. Build the site
+      - name: Build with Hugo
+        run: |
+          hugo --cleanDestinationDir --ignoreCache --disableRSS
+          echo "seanwallis.com" > public/CNAME
+
+      # 5. Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.PA_TOKEN }}
+          publish_dir: ./public
+          keep_history: true
